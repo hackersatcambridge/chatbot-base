@@ -1,9 +1,9 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 
-const PAGE_ACCESS_TOKEN = fs.readFileSync('token.txt');
+const PAGE_ACCESS_TOKEN = fs.readFileSync('token.txt', 'utf8');
 
-if (PAGE_ACCESS_TOKEN) {
+if (!PAGE_ACCESS_TOKEN) {
   throw 'You must fill out token.txt';
 }
 
