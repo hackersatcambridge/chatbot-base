@@ -1,7 +1,9 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
+const wit = require('node-wit');
 
 const PAGE_ACCESS_TOKEN = fs.readFileSync('token.txt', 'utf8');
+const WIT_ACCESS_TOKEN = fs.readFileSync('wit-token.txt', 'utf8');
 
 if (!PAGE_ACCESS_TOKEN) {
   throw 'You must fill out token.txt';
@@ -65,3 +67,15 @@ exports.makePostbackButton = function makePostbackButton(title, payload) {
     payload,
   };
 };
+
+exports.createWitClient = function createWitClient(actions) {
+  if (!WIT_ACCESS_TOKEN) {
+    throw 'You must fill out wit-token.txt';
+  }
+
+  return new wit.Wit({
+    accessToken: WIT_ACCESS_TOKEN,
+    actions,
+    logger: new wit.log.Logger(wit.log.DEBUG),
+  });
+}
