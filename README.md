@@ -14,9 +14,29 @@ Use this to get started making the next big chatbot!
 
 ## Steps We Take
 
+This is a very brief overview of how we'll be using this starter in the workshop. It is not
+intended to be comprehensive, but something you can come back to if you can't remember a
+few details.
+
 ### Set up the project
 
 Watch the instruction video to figure out how to do this
+
+### A note on restarting
+
+Restarting node every time you make changes is really boring and error prone.
+
+Make your life easier with `nodemon`!
+
+```
+npm install -g nodemon
+```
+
+```
+nodemon index
+```
+
+Now, your server will restart automatically when you change your code.
 
 ### Add a home route
 
@@ -32,6 +52,12 @@ To your index file. Put it after the comment about making a chatbot.
 
 ### Set up localtunnel
 
+Install localtunnel
+
+```
+npm install -g localtunnel
+```
+
 With a domain chosen, start up localtunnel
 
 ```
@@ -44,7 +70,7 @@ Note: This is not suitable as a long-term solution.
 
 ### Validate your domain
 
-Check out the [Facebook docs on how to do this.](https://developers.facebook.com/docs/messenger-platform/guides/setup#webhook_setup).
+Check out the [Facebook docs on how to do this](https://developers.facebook.com/docs/messenger-platform/guides/setup#webhook_setup).
 
 We've also set up a util function for you to use to create your validation route:
 
