@@ -42,7 +42,7 @@ Now, your server will restart automatically when you change your code.
 
 Add
 
-```
+```js
 app.get('/', (req, res) => {
   res.end('This is where my chatbot lives');
 });
@@ -74,7 +74,7 @@ Check out the [Facebook docs on how to do this](https://developers.facebook.com/
 
 We've also set up a util function for you to use to create your validation route:
 
-```
+```js
 app.get('/webhook', utils.createValidationHandler('Richard'));
 ```
 
@@ -82,7 +82,7 @@ app.get('/webhook', utils.createValidationHandler('Richard'));
 
 Add a route to get messages
 
-```
+```js
 app.post('/webhook', (req, res) => {
   utils.processSubscriptionMessages(req.body, (messageEvent) => {
     console.log(messageEvent);
@@ -97,7 +97,7 @@ make sure they're appearing in your app's log.
 
 Based on the message's content, you can send messages to the recipient like so:
 
-```
+```js
 utils.sendMessage(messageEvent.sender.id, {
   text: 'Hello!',
 });
@@ -116,7 +116,7 @@ Get the server access token from the settings page and put it in `wit-token.txt`
 
 Then at the top level of your index file, create your wit client, and a global context:
 
-```
+```js
 let globalContext = { };
 
 const witClient = utils.createWitClient({
@@ -131,7 +131,7 @@ const witClient = utils.createWitClient({
 
 Then, replace your message processing function with this:
 
-```
+```js
 witClient.runActions(event.sender.id, event.message.text, globalContext)
   .then(context => {
     globalContext = context;
@@ -142,6 +142,27 @@ witClient.runActions(event.sender.id, event.message.text, globalContext)
 ```
 
 This will allow Wit to use your app to talk to people on Messenger.
+
+#### How do actions work?
+
+The object that you pass to `createWitClient` is populated with the actions that
+your chatbot can do. It must at least have a send action that sends messages from the bot
+to recipients.
+
+Actions can handle operations that Wit stories cannot represent. For example, setting variables
+or making requests to online services. You supply Wit with the conditions that must be met
+for actions to be performed. For example, if a user asks for the weather, Wit should tell your
+app to perform the `checkWeather` action.
+
+Actions must return promises. All actions apart from `send` can return promises that resolve
+to a new context object for your app. This is useful for asynchronous actions, but for your
+purposes, you'd just wrap the returned context in a resolved promise:
+
+```js
+return Promise.resolve(context);
+```
+
+[Here is a quick primer on promises](https://spring.io/understanding/javascript-promises). You can search for more detailed overviews.
 
 ### Add more complex stories
 
