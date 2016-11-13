@@ -168,3 +168,20 @@ return Promise.resolve(context);
 
 Now you can make stories in Wit that require a context, and can call actions on your
 app. 
+
+### Publishing
+
+To make a chatbot that can interact with others 24/7, you need to solve a few key issues.
+
+#### Domains and Hosting
+
+LocalTunnel is not a long-term solution. It's great for this quick prototyping, but it will open you up to all
+kinds of issues such as people being able to hijack your domain and having to run `lt` all the time.
+
+You should get something more permanent, like [Heroku](https://heroku.com) or [Digital Ocean](https://digitalocean.com/).
+These will also give you a domain (albeit not a pretty one) that you can give to Facebook.
+
+#### Getting Verified
+
+Currently, only admins of the page can receive messages from your bot. This isn't useful if you want other
+people to talk to it. You can submit applications for review from the apps dashboard.
