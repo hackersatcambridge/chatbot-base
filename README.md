@@ -132,7 +132,7 @@ const witClient = utils.createWitClient({
 Then, replace your message processing function with this:
 
 ```js
-witClient.runActions(event.sender.id, event.message.text, globalContext)
+witClient.runActions(messageEvent.sender.id, messageEvent.message.text, globalContext)
   .then(context => {
     globalContext = context;
   })
