@@ -121,7 +121,9 @@ let globalContext = { };
 
 const witClient = utils.createWitClient({
   send(request, response) {
-    utils.sendMessage(request.senderId, response.text);
+    utils.sendMessage(request.sessionId, {
+      text: response.text,
+    });
 
     // All actions must return a promise
     return Promise.resolve();
