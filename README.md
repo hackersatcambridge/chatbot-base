@@ -107,7 +107,7 @@ utils.sendMessage(messageEvent.sender.id, {
 
 [**Flick through the Wit docs. They'll do a much better job of explaining the ins and outs**](https://wit.ai/docs)
 
-Manually creating responses is tedious. We will use [wit.ai](wit.ai) to make our lives easier.
+Manually creating responses is tedious. We will use [wit.ai](https://wit.ai) to make our lives easier.
 
 You want to sign up to Wit, and in your new app, create a story. Once this is done, you'll need to hook
 it up to your app. 
