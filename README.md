@@ -87,6 +87,7 @@ app.post('/webhook', (req, res) => {
   utils.processSubscriptionMessages(req.body, (messageEvent) => {
     console.log(messageEvent);
   });
+  res.status(200).end(); //Tell Facebook we have received and acknowledged the message!
 });
 ```
 
